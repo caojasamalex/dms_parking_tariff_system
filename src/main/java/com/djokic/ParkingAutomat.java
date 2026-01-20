@@ -15,14 +15,10 @@ public class ParkingAutomat {
         this.naplaceniIznos = 0;
     }
 
-    private ParkingAutomat(int id) {
-        this.id = id;
-        this.naplaceniIznos = 0;
-        this.tarifnik = null;
-    }
-
     public ParkingAutomat kopiraj(){
-        ParkingAutomat parkingAutomat = new ParkingAutomat(this.id);
+        ParkingAutomat parkingAutomat = new ParkingAutomat();
+
+        parkingAutomat.tarifnik = this.tarifnik;
 
         return parkingAutomat;
     }
@@ -71,11 +67,7 @@ public class ParkingAutomat {
     @Override
     public String toString() {
         synchronized (this.lock) {
-            return "ParkingAutomat{" +
-                    "id=" + id +
-                    ", tarifnik=" + tarifnik +
-                    ", neplaceniIznos=" + naplaceniIznos +
-                    '}';
+            return id + "(" + String.format("%.2f", naplaceniIznos) + ")";
         }
     }
 }
